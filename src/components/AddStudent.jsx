@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { BsPersonFillAdd } from "react-icons/bs";
 const AddStudent = ({ onAddStudent }) => {
   const [showModal, setShowModal] = useState(false);
   const [newStudent, setNewStudent] = useState({
@@ -8,7 +8,7 @@ const AddStudent = ({ onAddStudent }) => {
     course: "",
     phone: "",
     address: "",
-    yearOfAdmission: ""
+    yearOfAdmission: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -27,7 +27,7 @@ const AddStudent = ({ onAddStudent }) => {
       newErrors.email = "Enter a valid email address.";
     }
 
-    if (!newStudent.course.trim()) {
+    if (!newStudent.course) {
       newErrors.course = "Course is required.";
     }
 
@@ -70,7 +70,7 @@ const AddStudent = ({ onAddStudent }) => {
       course: "",
       phone: "",
       address: "",
-      yearOfAdmission: ""
+      yearOfAdmission: "",
     });
     setErrors({});
     setShowModal(false);
@@ -80,9 +80,10 @@ const AddStudent = ({ onAddStudent }) => {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="mt-14 mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="mt-14 mb-4 bg-gradient-to-r from-sky-500 to-blue-800 text-white flex gap-2 px-4 py-2 rounded"
       >
-        Add Student
+        <BsPersonFillAdd className="text-lg self-center" />
+        <p className="font-bold italic">Add Student</p>
       </button>
 
       {showModal && (
@@ -95,7 +96,7 @@ const AddStudent = ({ onAddStudent }) => {
               &times;
             </button>
             <form onSubmit={handleSubmit}>
-              <h2 className="text-xl font-semibold text-gray-700 mb-4">
+              <h2 className="text-3xl font-bold  bg-gradient-to-r from-sky-500 to-blue-800 italic text-transparent bg-clip-text mb-4">
                 Add New Student
               </h2>
 
@@ -114,12 +115,23 @@ const AddStudent = ({ onAddStudent }) => {
                 error={errors.email}
               />
 
-              <InputField
-                label="Course"
+              <select
+                className={`border-2 ${
+                  errors.course ? "border-red-500" : "border-sky-500"
+                } px-1 py-2 mb-4 text-gray-400 rounded shadow-sm focus:outline-none focus:ring w-full`}
                 value={newStudent.course}
-                onChange={(val) => setNewStudent({ ...newStudent, course: val })}
-                error={errors.course}
-              />
+                onChange={(e) =>
+                  setNewStudent({ ...newStudent, course: e.target.value })
+                }
+              >
+                <option value="">Select Course</option>
+                <option value="Math">Math</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+              </select>
+              {errors.course && (
+                <p className="text-red-500 text-sm mt-1">{errors.course}</p>
+              )}
 
               <InputField
                 label="Phone"
@@ -131,7 +143,9 @@ const AddStudent = ({ onAddStudent }) => {
               <InputField
                 label="Address"
                 value={newStudent.address}
-                onChange={(val) => setNewStudent({ ...newStudent, address: val })}
+                onChange={(val) =>
+                  setNewStudent({ ...newStudent, address: val })
+                }
                 error={errors.address}
               />
 
@@ -163,8 +177,8 @@ const InputField = ({ label, value, onChange, error, type = "text" }) => (
     <input
       type={type}
       placeholder={label}
-      className={`w-full border p-2 rounded ${
-        error ? "border-red-500" : "border-gray-300"
+      className={`w-full border p-2 rounded shadow-sm focus:outline-none focus:ring ${
+        error ? "border-red-500" : "border-sky-500"
       }`}
       value={value}
       onChange={(e) => onChange(e.target.value)}

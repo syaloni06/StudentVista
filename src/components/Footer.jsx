@@ -7,10 +7,10 @@ const Footer = () => {
         {/* Left Section: Logo or branding */}
         <div className="flex items-center text-lg sm:text-xl font-bold italic mx-4 sm:mx-6">
           {/* Copyright icon from react-icons */}
-          <FaCopyright className="self-center" />
+          <FaCopyright className="self-center text-sky-500" />
           
           {/* Display the year and the name */}
-          <span className="ml-2">2025 Syaloni Barman</span>
+          <span className="ml-2 bg-gradient-to-r from-sky-500 to-blue-600 text-transparent bg-clip-text">2025 Syaloni Barman</span>
         </div>
       </div>
     </>

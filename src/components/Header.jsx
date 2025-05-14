@@ -24,23 +24,30 @@ const Header = ({ courseFilter, setCourseFilter }) => {
   };
 
   return (
-    <div className="flex justify-between items-center bg-white text-sky-600 shadow-lg top-0 fixed w-full z-50 h-16 px-4 sm:px-8">
+    <div className="flex justify-between items-center bg-white shadow-lg top-0 fixed w-full z-50 h-16 px-4 sm:px-8">
       {/* Logo and Name */}
       <Link
-          to="/" className="flex items-center text-2xl lg:text-3xl font-bold italic">
+        to="/"
+        className="flex items-center text-2xl lg:text-3xl font-bold italic"
+      >
         <PiStudentFill className="text-4xl text-sky-600 rounded-full border-2 p-1 border-sky-600" />
-        <span className="hidden sm:inline ml-1">
-          Student
-          <IoLogoVimeo className="hidden sm:inline self-center" />
-          ista
+        <span className="hidden sm:flex ml-1">
+          <p className="bg-gradient-to-r flex from-sky-500 to-blue-600 text-transparent bg-clip-text">
+            Student
+          </p>
+          <IoLogoVimeo className="hidden sm:inline self-end text-4xl text-blue-700" />
+          <p className="bg-gradient-to-r flex from-blue-700 to-blue-800 text-transparent bg-clip-text">
+            ista
+          </p>
         </span>
       </Link>
 
       {/* Controls: Filter and Login */}
       <div className="flex items-center space-x-4">
         {/* Course Filter Dropdown */}
+        {location.pathname === "/" && (
         <select
-          className="border border-sky-400 text-sky-700 px-3 py-1 rounded shadow-sm focus:outline-none focus:ring"
+          className="border-2 border-sky-500 text-blue-700 font-bold px-1 sm:px-3 sm:py-1 text-sm sm:text-base rounded shadow-sm focus:outline-none focus:ring"
           value={courseFilter}
           onChange={(e) => setCourseFilter(e.target.value)}
         >
@@ -49,14 +56,15 @@ const Header = ({ courseFilter, setCourseFilter }) => {
           <option value="English">English</option>
           <option value="Science">Science</option>
         </select>
+      )}
 
         {/* Login Button */}
         {!isLoggedIn && (
           <button
-            className="bg-sky-600 text-white px-4 py-1 rounded hover:bg-sky-700 transition duration-200"
+            className="bg-gradient-to-r from-sky-500 to-blue-800 text-white px-1 sm:px-4 py-1 rounded transition duration-200 text-sm sm:text-base font-bold"
             onClick={handleLogin}
           >
-            Login to Add Student 
+            Login to Add Student
           </button>
         )}
       </div>

@@ -7,6 +7,7 @@ import { getMockStudents } from "../utils/MockStudentData";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import AddStudent from "./AddStudent";
+import { FaCircleArrowRight } from "react-icons/fa6";
 
 const mock = new MockAdapter(axios, { delayResponse: 1000 });
 mock.onGet("/api/students").reply(200, getMockStudents());
@@ -43,10 +44,10 @@ const Dashboard = () => {
           />
         )}
 
-        <div className="overflow-x-auto rounded shadow border">
+        <div className="overflow-x-auto rounded shadow border mt-16">
           <table className="min-w-full bg-white border">
             <thead>
-              <tr className="bg-gray-100 text-left text-sm font-semibold text-gray-700">
+              <tr className="bg-gray-100 text-left text-lg italic font-semibold text-gray-700">
                 <th className="p-3 border">ID</th>
                 <th className="p-3 border">Name</th>
                 <th className="p-3 border">Email</th>
@@ -58,7 +59,7 @@ const Dashboard = () => {
               {filteredStudents.map((student) => (
                 <tr
                   key={student.id}
-                  className="hover:bg-blue-50 cursor-pointer text-sm"
+                  className="hover:bg-blue-50 cursor-pointer text-base"
                 >
                   <td className="p-3 border">{student.id}</td>
                   <td className="p-3 border">{student.name}</td>
@@ -67,9 +68,10 @@ const Dashboard = () => {
                   <td className="p-3 border">
                     <button
                       onClick={() => navigate(`/studentdetails/${student.id}`)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                      className="bg-gradient-to-r from-sky-500 to-blue-800 text-white font-bold flex text-lg italic w-full px-3 py-1 hover:bg-blue-600 gap-x-2 justify-center rounded-md "
                     >
-                      View
+                      <p>View</p>
+                      <FaCircleArrowRight className="self-center" />
                     </button>
                   </td>
                 </tr>

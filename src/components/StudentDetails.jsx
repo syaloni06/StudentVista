@@ -42,13 +42,13 @@ const StudentDetails = () => {
   // Not logged in
   if (!isLoggedIn) {
     return (
-      <div className="p-4 border rounded shadow bg-white max-w-md mx-auto mt-6">
+      <div className="p-4 border rounded shadow bg-white max-w-md mx-auto mt-20">
         <p className="mb-3 font-medium text-gray-700">
           You must be logged in to view student details.
         </p>
         <button
           onClick={handleLogin}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-gradient-to-r from-sky-500 to-blue-800 text-white px-4 py-2 rounded"
         >
           Login with Google
         </button>
@@ -58,12 +58,37 @@ const StudentDetails = () => {
 
   // Show details
   return (
-    <div className="p-4 border rounded shadow bg-white max-w-md mx-auto mt-6">
-      <h2 className="text-xl font-bold mb-2">Student Details</h2>
-      <p><strong>Name:</strong> {student.name}</p>
-      <p><strong>Email:</strong> {student.email}</p>
-      <p><strong>Course:</strong> {student.course}</p>
-    </div>
+    <>
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-4">
+          <h2 className="text-4xl font-extrabold text-gray-800 border-b-2 pb-2 bg-gradient-to-r from-sky-500 to-blue-800 italic text-transparent bg-clip-text">
+            Student Details
+          </h2>
+
+          <div className="space-y-2 text-gray-700">
+            <p>
+              <span className="font-semibold">Name:</span> {student.name}
+            </p>
+            <p>
+              <span className="font-semibold">Email:</span> {student.email}
+            </p>
+            <p>
+              <span className="font-semibold">Course:</span> {student.course}
+            </p>
+            <p>
+              <span className="font-semibold">Phone:</span> {student.phone}
+            </p>
+            <p>
+              <span className="font-semibold">Address:</span> {student.address}
+            </p>
+            <p>
+              <span className="font-semibold">Year of Admission:</span>{" "}
+              {student.yearOfAdmission}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
